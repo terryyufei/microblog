@@ -10,6 +10,7 @@ from logging.handlers import SMTPHandler, RotatingFileHandler
 import os 
 from flask_mail import Mail
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 
 
 app = Flask(__name__)
@@ -22,10 +23,11 @@ migrate = Migrate(app, db)
 # Flask-Bootstrap instance 
 bootstrap = Bootstrap(app)
 
+# Flask-Moment instance
+moment = Moment(app)
 
 # Flask-Mail instance.
 mail = Mail(app)
-
 
 # Flask-Login initialization
 login = LoginManager(app)

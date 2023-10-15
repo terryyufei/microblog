@@ -48,3 +48,9 @@
         {% block app_content %}{% endblock %}
     </div>
 {% endblock %}
+
+<!-- moment.js for date and time rendering -->
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+{% endblock %}
