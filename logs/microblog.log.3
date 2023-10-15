@@ -1,0 +1,119 @@
+2023-10-13 23:54:58,784 ERROR: Exception on / [GET] [in /home/terry/microblog/venv/lib/python3.10/site-packages/flask/app.py:1414]
+Traceback (most recent call last):
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: post.timestamp
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/home/terry/microblog/app/routes.py", line 23, in index
+    posts = current_user.followed_posts().all()
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2688, in all
+    return self._iter().all()  # type: ignore
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2842, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2262, in execute
+    return self._execute_internal(
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2144, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1412, in execute
+    return meth(
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 516, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1635, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_single_context(
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1984, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2339, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: post.timestamp
+[SQL: SELECT anon_1.post_id AS anon_1_post_id, anon_1.post_body AS anon_1_post_body, anon_1.post_timestamp AS anon_1_post_timestamp, anon_1.post_user_id AS anon_1_post_user_id 
+FROM (SELECT post.id AS post_id, post.body AS post_body, post.timestamp AS post_timestamp, post.user_id AS post_user_id 
+FROM post JOIN followers ON followers.followed_id = post.user_id 
+WHERE followers.follower_id = ? UNION SELECT post.id AS post_id, post.body AS post_body, post.timestamp AS post_timestamp, post.user_id AS post_user_id 
+FROM post 
+WHERE post.user_id = ?) AS anon_1 ORDER BY anon_1.post_timestamp DESC]
+[parameters: (2, 2)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2023-10-13 23:57:24,642 INFO: Microblog startup [in /home/terry/microblog/app/__init__.py:53]
+2023-10-13 23:58:20,659 INFO: Microblog startup [in /home/terry/microblog/app/__init__.py:53]
+2023-10-13 23:58:37,294 INFO: Microblog startup [in /home/terry/microblog/app/__init__.py:53]
+2023-10-13 23:58:42,486 INFO: Microblog startup [in /home/terry/microblog/app/__init__.py:53]
+2023-10-14 00:46:22,716 INFO: Microblog startup [in /home/terry/microblog/app/__init__.py:53]
+2023-10-14 00:55:54,685 INFO: Microblog startup [in /home/terry/microblog/app/__init__.py:53]
+2023-10-14 01:17:53,910 INFO: Microblog startup [in /home/terry/microblog/app/__init__.py:53]
+2023-10-14 01:21:37,884 INFO: Microblog startup [in /home/terry/microblog/app/__init__.py:53]
+2023-10-14 22:08:23,649 INFO: Microblog startup [in /home/terry/microblog/app/__init__.py:54]
+2023-10-14 23:21:01,032 INFO: Microblog startup [in /home/terry/microblog/app/__init__.py:54]
+2023-10-15 01:23:39,246 INFO: Microblog startup [in /home/terry/microblog/app/__init__.py:54]
+2023-10-15 01:24:05,346 ERROR: Exception on /reset_password_request [POST] [in /home/terry/microblog/venv/lib/python3.10/site-packages/flask/app.py:1414]
+Traceback (most recent call last):
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask_mail.py", line 492, in send
+    message.send(connection)
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask_mail.py", line 427, in send
+    connection.send(self)
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask_mail.py", line 188, in send
+    self.host.sendmail(sanitize_address(envelope_from or message.sender),
+  File "/usr/lib/python3.10/smtplib.py", line 872, in sendmail
+    self.ehlo_or_helo_if_needed()
+  File "/usr/lib/python3.10/smtplib.py", line 611, in ehlo_or_helo_if_needed
+    if not (200 <= self.ehlo()[0] <= 299):
+  File "/usr/lib/python3.10/smtplib.py", line 451, in ehlo
+    self.putcmd(self.ehlo_msg, name or self.local_hostname)
+  File "/usr/lib/python3.10/smtplib.py", line 378, in putcmd
+    self.send(f'{s}{CRLF}')
+  File "/usr/lib/python3.10/smtplib.py", line 365, in send
+    raise SMTPServerDisconnected('please run connect() first')
+smtplib.SMTPServerDisconnected: please run connect() first
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/terry/microblog/app/routes.py", line 205, in reset_password_request
+    send_password_reset_email(user)
+  File "/home/terry/microblog/app/email.py", line 17, in send_password_reset_email
+    send_email('[Microblog] Reset Your Password',
+  File "/home/terry/microblog/app/email.py", line 11, in send_email
+    mail.send(msg)
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/home/terry/microblog/venv/lib/python3.10/site-packages/flask_mail.py", line 152, in __exit__
+    self.host.quit()
+  File "/usr/lib/python3.10/smtplib.py", line 1004, in quit
+    res = self.docmd("quit")
+  File "/usr/lib/python3.10/smtplib.py", line 431, in docmd
+    self.putcmd(cmd, args)
+  File "/usr/lib/python3.10/smtplib.py", line 378, in putcmd
+    self.send(f'{s}{CRLF}')
+  File "/usr/lib/python3.10/smtplib.py", line 365, in send
+    raise SMTPServerDisconnected('please run connect() first')
+smtplib.SMTPServerDisconnected: please run connect() first
